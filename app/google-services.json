@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "991377126468",
+    "firebase_url": "https://restituo-d3eba.firebaseio.com",
+    "project_id": "restituo-d3eba",
+    "storage_bucket": "restituo-d3eba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991377126468:android:f988baf80fbc4770d1f811",
+        "android_client_info": {
+          "package_name": "com.samapps.restituo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991377126468-2jkp3gg7sb51u61c03agi3u0f2ujrieg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2yUywfiOYVRPX8SgYQGka_B_JCl44a7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "991377126468-2jkp3gg7sb51u61c03agi3u0f2ujrieg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
