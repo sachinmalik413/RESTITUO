@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="steps">
+        <item>"Select Package"</item>
+        <item>"Details"</item>
+        <item>"Payment"</item>
+    </array>
+
+</resources>
