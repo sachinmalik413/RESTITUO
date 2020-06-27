@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.view.CreateRestituoActivity">
 
+    <FrameLayout
+        android:id="@+id/your_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        app:layout_constraintBottom_toTopOf="@+id/step_view"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.shuhart.stepview.StepView
         android:id="@+id/step_view"
         android:layout_width="0dp"
