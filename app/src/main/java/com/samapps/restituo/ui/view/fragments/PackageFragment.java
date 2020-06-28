@@ -16,6 +16,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.samapps.restituo.R;
+import com.samapps.restituo.ui.view.CreateRestituoActivity;
 
 public class PackageFragment extends Fragment {
 
@@ -56,13 +57,14 @@ public class PackageFragment extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                mViewModel.setMinutes(seekBar.getProgress());
             }
         });
 
         ((Button)view.findViewById(R.id.next)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ((CreateRestituoActivity)getActivity()).addFragment(2);
             }
         });
 
