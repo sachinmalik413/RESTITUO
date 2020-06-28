@@ -6,22 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".ui.view.CreateRestituoActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
     <FrameLayout
         android:id="@+id/your_placeholder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="7dp"
-        app:layout_constraintBottom_toTopOf="@+id/step_view"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="15dp"
+         />
 
     <com.shuhart.stepview.StepView
         android:id="@+id/step_view"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:sv_animationType="Line"
         app:sv_doneCircleColor="@color/colorAccent"
         app:sv_doneCircleRadius="12dp"
@@ -39,5 +41,7 @@
         app:sv_stepPadding="4dp"
         app:sv_stepViewStyle="@style/StepView"
         app:sv_typeface="@font/opensansregular" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
