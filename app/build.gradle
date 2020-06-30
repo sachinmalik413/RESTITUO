@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.samapps.restituo"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -37,7 +37,13 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.1.0'
     implementation 'com.shuhart.stepview:stepview:1.5.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.payumoney.sdkui:plug-n-play:1.6.0'
+    implementation 'com.paytm.appinvokesdk:appinvokesdk:1.2'
+    // retrofit library
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    // Retrofit API Interceptor for Debuging
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.samapps.restituo.R;
 import com.samapps.restituo.ui.view.fragments.CommunicationFragment;
 import com.samapps.restituo.ui.view.fragments.PackageFragment;
+import com.samapps.restituo.ui.view.fragments.PaymentFragment;
 import com.shuhart.stepview.StepView;
 
 public class CreateRestituoActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
@@ -41,7 +42,7 @@ public class CreateRestituoActivity extends AppCompatActivity implements Fragmen
                     step_view.go(1,true);
                     break;
 
-            case 3: ft.replace(R.id.your_placeholder, new PackageFragment());
+            case 3: ft.replace(R.id.your_placeholder, new PaymentFragment());
                     ft.addToBackStack("3");
                     step_view.go(2,true);
                     break;
