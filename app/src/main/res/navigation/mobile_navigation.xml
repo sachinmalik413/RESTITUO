@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.samapps.restituo.ui.view.ui.home.HomeFragment"
+        android:name="com.samapps.restituo.ui.view.uinav.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.samapps.restituo.ui.view.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_wallet"
+        android:name="com.samapps.restituo.ui.view.uinav.wallet.WalletFragment"
+        android:label="@string/menu_wallet"
+        tools:layout="@layout/fragment_wallet" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.samapps.restituo.ui.view.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:id="@+id/nav_agreement"
+        android:name="com.samapps.restituo.ui.view.uinav.slideshow.SlideshowFragment"
+        android:label="@string/menu_agreement"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>

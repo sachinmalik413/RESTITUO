@@ -1,4 +1,4 @@
-package com.samapps.restituo.ui.view.ui.home;
+package com.samapps.restituo.ui.view.uinav.home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

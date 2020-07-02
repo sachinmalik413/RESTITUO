@@ -30,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG)
                     .show();
 
-            startActivity(new Intent(this,DashBoardActivity.class));
+            startActivity(new Intent(this,DashboardActivity.class));
             finish();
 
         }
