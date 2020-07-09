@@ -19,7 +19,13 @@
 
     <fragment
         android:id="@+id/nav_agreement"
-        android:name="com.samapps.restituo.ui.view.uinav.slideshow.SlideshowFragment"
+        android:name="com.samapps.restituo.ui.view.uinav.useragreement.AgreementFragment"
         android:label="@string/menu_agreement"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_agreement" />
+
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="com.samapps.restituo.ui.view.uinav.invite.InviteFragment"
+        android:label="@string/menu_share"
+        tools:layout="@layout/fragment_invite" />
 </navigation>
