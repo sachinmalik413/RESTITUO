@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
-        // toast
+        // toast display
         Toast.makeText(getApplicationContext(),"This is Sample toast",Toast.LENGTH_LONG).show();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
