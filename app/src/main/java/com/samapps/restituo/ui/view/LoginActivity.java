@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.samapps.restituo.R;
 
@@ -24,7 +25,8 @@ public class LoginActivity extends AppCompatActivity {
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
-
+        // toast display
+        Toast.makeText(getApplicationContext(),"This is Sample toast",Toast.LENGTH_LONG).show();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
