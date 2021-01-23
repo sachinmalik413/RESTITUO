@@ -21,12 +21,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         final EditText usernameEditText = findViewById(R.id.username);
-        final EditText passwordEditText = findViewById(R.id.password);
+       // final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
-
-        // toast display
-        Toast.makeText(getApplicationContext(),"This is Sample toast",Toast.LENGTH_LONG).show();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
