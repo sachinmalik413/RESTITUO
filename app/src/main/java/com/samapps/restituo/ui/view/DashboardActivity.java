@@ -1,5 +1,6 @@
 package com.samapps.restituo.ui.view;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -27,6 +28,10 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // for toolbar text color
+        toolbar.setTitleTextColor(Color.BLACK);
+
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
