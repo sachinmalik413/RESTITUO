@@ -1,5 +1,6 @@
 package com.samapps.restituo.ui.view.uinav.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.samapps.restituo.R;
+import com.samapps.restituo.ui.view.DetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,14 +28,19 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-
-
+        /*
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        startActivity(intent);
+        */
         List<CardData> data = fill_with_data();
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         RecyclerView recyclerView = root.findViewById(R.id.recyclerview);
         Recycler_View_Adapter adapter = new Recycler_View_Adapter(data, getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+       // CardData cardData = new CardData();
+       // cardData.setTimer(4);
 
 
         homeViewModel =
@@ -49,6 +56,10 @@ public class HomeFragment extends Fragment {
         return root;
 
 
+
+
+
+
     }
 
 
@@ -56,16 +67,12 @@ public class HomeFragment extends Fragment {
 
         List<CardData> data = new ArrayList<>();
 
-//        data.add(new CardData("Batman vs Superman", "Following the destruction of Metropolis, Batman embarks on a personal vendetta against Superman "));
-//        data.add(new CardData("X-Men: Apocalypse", "X-Men: Apocalypse is an upcoming American superhero film based on the X-Men characters that appear in Marvel Comics "));
-//        data.add(new CardData("Captain America: Civil War", "A feud between Captain America and Iron Man leaves the Avengers in turmoil.  "));
-//        data.add(new CardData("Kung Fu Panda 3", "After reuniting with his long-lost father, Po  must train a village of pandas"));
-//        data.add(new CardData("Warcraft", "Fleeing their dying home to colonize another, fearsome orc warriors invade the peaceful realm of Azeroth. "));
-//        data.add(new CardData("Alice in Wonderland", "Alice in Wonderland: Through the Looking Glass "));
-
-        data.add(new CardData("ABC", "XYZ "));
-        data.add(new CardData("ABC", "XYZ "));
-        data.add(new CardData("ABC", "XYZ"));
+        data.add(new CardData("8080097426", "text/Email"));
+        data.add(new CardData("1231231233", "text/Email"));
+        data.add(new CardData("4444445556", "text/Email"));
+        data.add(new CardData("7776668884", "text/Email"));
+        data.add(new CardData("1122334455", "text/Email"));
+        data.add(new CardData("6655773388", "text/Email"));
 
         return data;
     }

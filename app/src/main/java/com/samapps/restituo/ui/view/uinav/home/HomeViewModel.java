@@ -1,8 +1,12 @@
 package com.samapps.restituo.ui.view.uinav.home;
 
+import android.content.Intent;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.samapps.restituo.ui.view.DetailActivity;
 
 public class HomeViewModel extends ViewModel {
 

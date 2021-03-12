@@ -1,7 +1,7 @@
 package com.samapps.restituo.ui.view.uinav.home;
 
 import android.content.Context;
-import android.provider.ContactsContract;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +11,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.samapps.restituo.R;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class Recycler_View_Adapter extends RecyclerView.Adapter<View_Holder> {
+    CardData cardData = new CardData();
 
     List<CardData> list = Collections.emptyList();
     Context context;
+    //CountDownTimer countDownTimer;
 
-    public Recycler_View_Adapter(List<CardData> list, Context context) {
+    public Recycler_View_Adapter(final List<CardData> list, Context context) {
         this.list = list;
         this.context = context;
+
     }
+
+
 
     @Override
     public View_Holder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -33,17 +39,52 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<View_Holder> {
     }
 
     @Override
-    public void onBindViewHolder(View_Holder holder, int position) {
+    public void onBindViewHolder(final View_Holder holder, final int position) {
 
+        //notifyDataSetChanged();
         //Use the provided View Holder on the onCreateViewHolder method to populate the current row on the RecyclerView
-        holder.title.setText(list.get(position).title);
-        holder.description.setText(list.get(position).description);
+        holder.mobileNo.setText(list.get(position).getMobileNo());
+        holder.textMail.setText(list.get(position).getTextMail());
 
-       // holder.imageView.setImageResource(list.get(position).imageId);
+        Date today = new Date();
+        final long currentTime = today.getHours();
+        final long timerr = today.getHours() + 4;
+        System.out.println(timerr);
 
-        //animate(holder);
+       // long expiryTime = timerr - currentTime;
+        //holder.timer.setText();
 
-    }
+
+
+        if (holder.timerr != null) {
+            holder.timerr.cancel();
+        }
+
+        holder.timerr = new CountDownTimer(14400000, 500) {
+                public void onTick(long millisUntilFinished) {
+                    long seconds = millisUntilFinished / 1000;
+
+                    long minutes = seconds / 60;
+                    long hours = minutes / 60;
+                    //long days = hours / 24;
+                    String time = hours % 24 + ":" + minutes % 60 + ":" + seconds % 60;
+                    holder.timer.setText(time);
+
+                }
+
+                @Override
+                public void onFinish() {
+                    holder.timer.setText("Time Over" );
+                }
+
+            }.start();
+
+
+
+        }
+
+
+
 
     @Override
     public int getItemCount() {
@@ -53,6 +94,8 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<View_Holder> {
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        CountDownTimer timer;
+
         super.onAttachedToRecyclerView(recyclerView);
     }
 
