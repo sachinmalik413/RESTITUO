@@ -1,5 +1,6 @@
 package com.samapps.restituo.ui.view;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -36,8 +37,12 @@ public class DashboardActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //        .setAction("Action", null).show();
+               // CreateRestituoActivity cr = new CreateRestituoActivity();
+                //cr;
+                Intent intent = new Intent(DashboardActivity.this, CreateRestituoActivity.class);
+                startActivity(intent);
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
