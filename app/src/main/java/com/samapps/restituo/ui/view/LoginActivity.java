@@ -33,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 startActivity(new Intent(LoginActivity.this,VerifyPhoneActivity.class).putExtra("mobile",mob));
+               // startActivity(new Intent(LoginActivity.this,UserProfileActivity.class));
+
             }
         });
     }

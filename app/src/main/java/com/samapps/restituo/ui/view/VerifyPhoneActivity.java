@@ -73,7 +73,7 @@ public class VerifyPhoneActivity extends AppCompatActivity implements FireBaseAu
                     // method to verify the OTP.
                     verifyCode(edtOTP.getText().toString());
                     Toast.makeText(VerifyPhoneActivity.this,"Login Successful",Toast.LENGTH_LONG).show();
-                    Intent intent1=new Intent(VerifyPhoneActivity.this,DashboardActivity.class);
+                    Intent intent1=new Intent(VerifyPhoneActivity.this,PrivacyPolicyActivity.class);
                     startActivity(intent1);
                 }
             }
