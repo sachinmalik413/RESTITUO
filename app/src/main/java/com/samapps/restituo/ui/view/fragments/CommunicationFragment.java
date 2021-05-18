@@ -45,7 +45,8 @@ public class CommunicationFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // for importing contacts
-
+    // public static final int PICK_CONTACT    = 1;
+    private static final int CONTACT_PERMISSION_CODE = 1;
     private static final int CONTACT_PICK_CODE = 2;
 
     // TODO: Rename and change types of parameters
@@ -101,11 +102,20 @@ public class CommunicationFragment extends Fragment {
         });
 
         ImageButton contact=view.findViewById(R.id.importContact);
-       // TextView phone = view.findViewById(R.id.EdPhone);
+        // TextView phone = view.findViewById(R.id.EdPhone);
         contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pickContactIntent();
+
+
+                if (checkContactPermission()){
+                    //permission granted, pick contact
+                    pickContactIntent();
+                }
+                else {
+                    //permission not granted, request
+                    requestContactPermission();
+                }
             }
         });
     }
@@ -114,6 +124,42 @@ public class CommunicationFragment extends Fragment {
         //intent to pick contact
         Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
         startActivityForResult(intent, CONTACT_PICK_CODE);
+    }
+
+
+
+    private boolean checkContactPermission(){
+        //check if contact permission was granted or not
+        boolean result = ContextCompat.checkSelfPermission(
+                getActivity(),
+                Manifest.permission.READ_CONTACTS) == (PackageManager.PERMISSION_GRANTED
+        );
+
+        return result;  //true if permission granted, false if not
+    }
+
+    private void requestContactPermission(){
+        //permissions to request
+        String[] permission = {Manifest.permission.READ_CONTACTS};
+
+        ActivityCompat.requestPermissions(getActivity(), permission, CONTACT_PERMISSION_CODE);
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        //handle permission request result
+        if (requestCode == CONTACT_PERMISSION_CODE){
+            if (grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                //permission granted, can pick contact now
+                pickContactIntent();
+            }
+            else {
+                //permission denied
+                Toast.makeText(getActivity(), "Permission denied...", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
@@ -127,8 +173,7 @@ public class CommunicationFragment extends Fragment {
             //calls when user click a contact from list
 
             if (requestCode == CONTACT_PICK_CODE) {
-                Number.setText("");
-                Name.setText("");
+                // contactTv.setText("");
 
                 Cursor cursor1, cursor2;
 
@@ -141,11 +186,10 @@ public class CommunicationFragment extends Fragment {
                     //get contact details
                     String contactId = cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts._ID));
                     String contactName = cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                    String contactThumnail = cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI));
                     String idResults = cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
                     int idResultHold = Integer.parseInt(idResults);
 
-                   // contactTv.append("ID: " + contactId);
-                   // contactTv.append("\nName: " + contactName);
                     Name.setText(contactName);
 
                     if (idResultHold == 1) {
@@ -161,9 +205,13 @@ public class CommunicationFragment extends Fragment {
                             String contactNumber = cursor2.getString(cursor2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                             //set details
 
-                            //contactTv.append("\nPhone: " + contactNumber);
                             Number.setText(contactNumber);
-
+                            //before setting image, check if have or not
+//                            if (contactThumnail != null) {
+//                                thumbnailIv.setImageURI(Uri.parse(contactThumnail));
+//                            } else {
+//                                thumbnailIv.setImageResource(R.drawable.ic_person);
+//                            }
                         }
                         cursor2.close();
                     }
@@ -175,5 +223,37 @@ public class CommunicationFragment extends Fragment {
             //calls when user click back button | don't pick contact
         }
     }
+    /*
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        TextView phone = getView().findViewById(R.id.EdPhone);
+        switch (requestCode) {
+            case (PICK_CONTACT):
+                if (resultCode == Activity.RESULT_OK) {
+                    Uri contactData = data.getData();
+                    ContentResolver cr = getContext().getContentResolver();
+                    //Cursor c = getActivity().managedQuery(contactData, null, null, null, null);
+                    Cursor c = cr.query(contactData, new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME, ContactsContract.PhoneLookup.NUMBER}, null, null, null);
+                    if (c.moveToFirst()) {
+                       // String name = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                       // int number= c.getInt(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                        String name = c.getString(c.getColumnIndex(ContactsContract.Contacts.);
+                        int number= c.getInt(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+                        phone.setText(name + number);
+                        //
+                        //txtContacts1.setText(name);
+                    }
+                }
+                break;
+        }
+    }
+
+    */
+
+
+//    private Cursor managedQuery(Uri contactData, Object o, Object o1, Object o2, Object o3) {
+//    }
+
 
 }
