@@ -11,28 +11,85 @@
        android:layout_height="match_parent"
        android:orientation="vertical">
 
+
        <TextView
-           android:layout_width="match_parent"
+           android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="Enter Email id" />
+           android:layout_marginTop="10dp"
+           android:text="Email Id"
+           android:textStyle="bold"
+           android:textSize="18sp" />
+
 
        <EditText
+           android:id="@+id/EdEmail"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:layout_marginTop="10dp"
            android:inputType="textEmailAddress"/>
 
        <TextView
-           android:layout_width="match_parent"
+           android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_marginTop="10dp"
-           android:text="Enter Phone Number" />
+           android:text="Choose Contact"
+           android:textStyle="bold"
+           android:textSize="18sp" />
+
+       <ImageButton
+           android:id="@+id/importContact"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:backgroundTint="@color/white"
+           android:src="@drawable/ic_baseline_contacts_24" />
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:text="Name:"
+           android:textSize="18sp"
+           android:textStyle="bold" />
+
+       <TextView
+           android:id="@+id/tvName"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:textSize="18sp" />
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:text="Phone Number:"
+           android:textSize="18sp"
+           android:textStyle="bold" />
+
+       <TextView
+           android:id="@+id/tvPhone"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:textSize="18sp"
+           />
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:text="Message"
+           android:textStyle="bold"
+           android:textSize="18sp" />
 
        <EditText
+           android:id="@+id/edMessage"
            android:layout_width="match_parent"
-           android:layout_height="wrap_content"
+           android:layout_height="91dp"
            android:layout_marginTop="10dp"
-           android:inputType="phone"/>
+
+           />
 
        <Button
            android:id="@+id/next"
@@ -40,6 +97,8 @@
            android:layout_height="wrap_content"
            android:layout_marginTop="10dp"
            android:layout_gravity="end"
+           android:background="#FFFFFF"
+           android:textColor="@color/orange"
            android:text="Next"/>
 
 
