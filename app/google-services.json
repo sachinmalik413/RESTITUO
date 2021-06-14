@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "991377126468-8c543sht5e7f3rhl9d7lf3uuvfridais.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.samapps.restituo",
+            "certificate_hash": "ad61172a2d6f392fcd45939ed748c44ec6086a3e"
+          }
+        },
+        {
+          "client_id": "991377126468-gnnedv2mthp8cavgabhp2uh7te3e65gj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.samapps.restituo",
+            "certificate_hash": "5c804e6ff57ae84d1c3903f67b2d3d8a22fc201f"
+          }
+        },
+        {
           "client_id": "991377126468-2jkp3gg7sb51u61c03agi3u0f2ujrieg.apps.googleusercontent.com",
           "client_type": 3
         }

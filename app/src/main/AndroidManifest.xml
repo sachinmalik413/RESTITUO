@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".VollyAndFirebaseConfig.FirebaseConfigActivity"></activity>
+        <activity android:name=".VollyAndFirebaseConfig.ApiActivity" />
+        <activity android:name=".CloudMessaging.FirebaseNotificationActivity" />
         <activity android:name=".ui.view.SignaturePadActivity" />
         <activity android:name=".ui.view.PrivacyPolicyActivity" />
         <activity android:name=".ui.view.DetailActivity" />
@@ -25,7 +28,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.view.UserProfileActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.view.CreateRestituoActivity"
             android:label="@string/title_activity_create_restituo"
@@ -41,7 +44,14 @@
         <activity
             android:name=".ui.view.LoginActivity"
             android:label="@string/app_name" />
-    </application>
 
+        <service
+            android:name=".CloudMessaging.MyFirebaseInstanceIdService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
 
 </manifest>
