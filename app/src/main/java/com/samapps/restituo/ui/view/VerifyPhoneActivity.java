@@ -10,7 +10,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskExecutors;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.samapps.restituo.R;
+import com.samapps.restituo.VollyAndFirebaseConfig.ApiActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,9 +42,11 @@ public class VerifyPhoneActivity extends AppCompatActivity implements FireBaseAu
     // variable for FirebaseAuth class
     private FirebaseAuth mAuth;
 
+    // for volly api
+    private RequestQueue mRequestQueue;
     // variable for our text input
     // field for phone and OTP.
-    EditText edtOTP;
+    EditText edtOTP,edtPh;
     Button verifyOTPBtn;
 
     // string for storing our verification ID
@@ -38,18 +61,26 @@ public class VerifyPhoneActivity extends AppCompatActivity implements FireBaseAu
         // below line is for getting instance
         // of our FirebaseAuth.
         mAuth = FirebaseAuth.getInstance();
+        // for  volly request queue
+        mRequestQueue = Volley.newRequestQueue(this);
 
         // initializing variables for button and Edittext.
 
         // edit text find view
         edtOTP = findViewById(R.id.editTextNumber);
         verifyOTPBtn = findViewById(R.id.verify_otp);
+        edtPh = findViewById(R.id.invitePhone);
 
         Intent intent = getIntent();
-        String mobile = intent.getStringExtra("mobile");
+        final String mobile = intent.getStringExtra("mobile");
         sendVerificationCode(mobile);
 
         // setting onclick listner for generate OTP button.
+
+
+        final String invitedPhone = edtPh.getText().toString();
+        // for json object request
+
 
 
         // initializing on click listener
@@ -72,6 +103,43 @@ public class VerifyPhoneActivity extends AppCompatActivity implements FireBaseAu
                     // if OTP field is not empty calling
                     // method to verify the OTP.
                     verifyCode(edtOTP.getText().toString());
+
+                    // for volly json object request
+
+                    String url = "https://protochordate-falls.000webhostapp.com/restituo/register.php?phone="+mobile+"&invitedBy="+invitedPhone;
+                    JsonObjectRequest
+                            jsonObjectRequest
+                            = new JsonObjectRequest(
+                            Request.Method.GET,
+                            url,
+                            null,
+                            new Response.Listener<JSONObject>() {
+
+
+                                @Override
+                                public void onResponse(JSONObject response)
+                                {
+                                    // textView.setText(response.getString("message"));
+                                    try {
+                                        Toast.makeText(VerifyPhoneActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error)
+                                {
+                                    Toast.makeText(VerifyPhoneActivity.this, "Some error occurred!!", Toast.LENGTH_LONG).show();
+
+                                }
+                            });
+                    mRequestQueue.add(jsonObjectRequest);
+
+                    // end volly json object request
+
                     Toast.makeText(VerifyPhoneActivity.this,"Login Successful",Toast.LENGTH_LONG).show();
                     Intent intent1=new Intent(VerifyPhoneActivity.this,PrivacyPolicyActivity.class);
                     startActivity(intent1);
