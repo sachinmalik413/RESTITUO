@@ -24,7 +24,7 @@ public class UserProfileActivity extends AppCompatActivity {
         backView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // finish();
+
 
                 startActivity(new Intent(UserProfileActivity.this,DashboardActivity.class));
             }

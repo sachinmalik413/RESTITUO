@@ -30,29 +30,6 @@ public class ApiActivity extends AppCompatActivity {
 
         textView = findViewById(R.id.textView3);
         mRequestQueue = Volley.newRequestQueue(this);
-      /*
-        final ImageView img = (ImageView)findViewById(R.id.img);
-
-
-        // image request
-        String url ="https://www.thecrazyprogrammer.com/wp-content/uploads/2015/07/The-Crazy-Programmer.png";
-
-        ImageRequest request = new ImageRequest(url, new Response.Listener<Bitmap>() {
-            @Override
-            public void onResponse(Bitmap response) {
-                img.setImageBitmap(response);
-            }
-        },0,0,null,
-        new Response.ErrorListener(){
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(ApiActivity.this, "Some error occurred!!", Toast.LENGTH_LONG).show();
-            }
-        }
-        );
-
-*/
 
         // for json data
 
@@ -85,33 +62,6 @@ public class ApiActivity extends AppCompatActivity {
                     }
                 });
         mRequestQueue.add(jsonObjectRequest);
-
-
-        // for json array request
-/*
-        JsonArrayRequest
-                jsonArrayRequest
-                = new JsonArrayRequest(
-                Request.Method.GET,
-                url,
-                null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response)
-                    {
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error)
-                    {
-                        Toast.makeText(ApiActivity.this, "Some error occurred!!", Toast.LENGTH_LONG).show();
-
-                    }
-                });
-        mRequestQueue.add(jsonArrayRequest);
-*/
-
 
 
     }

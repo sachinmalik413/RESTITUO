@@ -18,13 +18,5 @@ public class FirebaseNotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_firebase_notification);
 
 
-
-
-        /*
-         * Displaying a notification locally
-         */
-     //   MyNotificationManager.getInstance(this).displayNotification("Greetings", "Hello how are you?");
-
-
     }
 }
