@@ -46,39 +46,8 @@ public class DetailActivity extends AppCompatActivity {
         mProgress.setSecondaryProgress(100); // Secondary Progress
         mProgress.setMax(100); // Maximum Progress
         mProgress.setProgressDrawable(drawable);
-      /*  ObjectAnimator animation = ObjectAnimator.ofInt(mProgress, "progress", 0, 100);
-        animation.setDuration(50000);
-        animation.setInterpolator(new DecelerateInterpolator());
-        animation.start();*/
         tv = (TextView) findViewById(R.id.tv);
-      /*
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                while (pStatus >0) {
-                    pStatus -= 1000;
 
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            // TODO Auto-generated method stub
-                            mProgress.setProgress(pStatus);
-                            tv.setText(mProgress.getProgress() + "%");
-
-                        }
-                    });
-                    try {
-                        // Sleep for 200 milliseconds.
-                        // Just to display the progress slowly
-                        Thread.sleep(60000); //thread will take approx 3 seconds to finish
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
-      */
 
         // timer for seekbar
         final int oneMin = 10 * 60 * 1000; // 1 minute in milli seconds
@@ -95,9 +64,7 @@ public class DetailActivity extends AppCompatActivity {
                 progress= (int) (progress-0.01);
                 mProgress.setProgress(progress);
                 tv.setText(mProgress.getProgress() + "%");
-//                //backward progress
-//                int total = (int) (((float) millisUntilFinished / (float) oneMin) * 100.0);
-//                progressBar.setProgress(total);
+
 
             }
 

@@ -19,12 +19,5 @@ public class FirebaseNotificationActivity extends AppCompatActivity {
 
 
 
-
-        /*
-         * Displaying a notification locally
-         */
-     //   MyNotificationManager.getInstance(this).displayNotification("Greetings", "Hello how are you?");
-
-
     }
 }

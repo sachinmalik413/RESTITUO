@@ -28,10 +28,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        /*
-        Intent intent = new Intent(getActivity(), DetailActivity.class);
-        startActivity(intent);
-        */
         List<CardData> data = fill_with_data();
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         RecyclerView recyclerView = root.findViewById(R.id.recyclerview);
@@ -39,25 +35,17 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-       // CardData cardData = new CardData();
-       // cardData.setTimer(4);
 
 
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
-        //View root = inflater.inflate(R.layout.fragment_home, container, false);
-       // final TextView textView = root.findViewById(R.id.text_home);
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-               // textView.setText(s);
+
             }
         });
         return root;
-
-
-
-
 
 
     }

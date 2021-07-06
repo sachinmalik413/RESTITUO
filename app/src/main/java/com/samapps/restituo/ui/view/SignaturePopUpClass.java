@@ -105,12 +105,6 @@ public class SignaturePopUpClass {
                     Bitmap signatureBitmap = mSignaturePad.getSignatureBitmap();
                     if (addJpgSignatureToGallery(signatureBitmap)) {
                         Toast.makeText(p.getApplicationContext(), "Signature saved into the Gallery", Toast.LENGTH_SHORT).show();
-                        //Intent intent1=new Intent(SignaturePadActivity.this,DashboardActivity.class);
-
-                        // ActivityCompat.finishAffinity(PrivacyPolicyActivity.this);
-                        //intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        //    intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                        //startActivity(intent1);
 
                     } else {
                         Toast.makeText(p.getApplicationContext(), "Unable to store the signature", Toast.LENGTH_SHORT).show();
