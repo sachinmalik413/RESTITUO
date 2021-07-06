@@ -31,7 +31,7 @@ public class InviteFragment extends Fragment {
         inviteViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                //textView.setText(s);
+
             }
         });
         return root;

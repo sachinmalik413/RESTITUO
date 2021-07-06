@@ -51,8 +51,7 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<View_Holder> {
         final long timerr = today.getHours() + 4;
         System.out.println(timerr);
 
-       // long expiryTime = timerr - currentTime;
-        //holder.timer.setText();
+
 
 
 

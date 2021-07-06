@@ -6,13 +6,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.paytm.pgsdk.PaytmOrder;
 import com.paytm.pgsdk.PaytmPaymentTransactionCallback;
 import com.paytm.pgsdk.TransactionManager;
 import com.samapps.restituo.R;
+import com.samapps.restituo.VollyAndFirebaseConfig.ApiActivity;
 import com.samapps.restituo.retroutil.ServiceWrapper;
 import com.samapps.restituo.retroutil.Token_Res;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,6 +40,22 @@ public class PayTmUtil {
     private String midString ="LvvmzN49988179009102", orderIdString="", txnTokenString="";
     private Integer ActivityRequestCode = 2;
     private Activity activity;
+    //for volly library
+    private RequestQueue mRequestQueue;
+
+
+    // variable to hold context
+    private Context context;
+
+//save the context recievied via constructor in a local variable
+
+    public PayTmUtil(Context context){
+        this.context=context;
+    }
+
+    public PayTmUtil() {
+
+    }
 
     public static PayTmUtil getInstance(){
         return new PayTmUtil();
@@ -82,7 +108,7 @@ public class PayTmUtil {
         orderIdString =  date+String.valueOf(randomNum);
     }
 
-    private void startPaytmPayment (String token, String amount){
+    private void startPaytmPayment (final String token, final String amount){
 
         txnTokenString = token;
         // for test mode use it
@@ -100,6 +126,42 @@ public class PayTmUtil {
             @Override
             public void onTransactionResponse(Bundle bundle) {
                 Log.e(TAG, "Response (onTransactionResponse) : "+bundle.toString());
+                mRequestQueue = Volley.newRequestQueue(context);
+                // volly implementation
+
+                String url = "https://protochordate-falls.000webhostapp.com/restituo/wallet.php?user=jyoti&amount="+amount+"&orderid="+orderIdString;
+                JsonObjectRequest
+                        jsonObjectRequest
+                        = new JsonObjectRequest(
+                        Request.Method.GET,
+                        url,
+                        null,
+                        new com.android.volley.Response.Listener<JSONObject>() {
+
+
+                            @Override
+                            public void onResponse(JSONObject response)
+                            {
+                                try {
+                                    //textView.setText(response.getString("message"));
+                                    Log.e(TAG,response.getString("message"));
+                                    Toast.makeText(context, response.getString("message"), Toast.LENGTH_LONG).show();
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        },
+                        new com.android.volley.Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error)
+                            {
+                                Toast.makeText(context, "Some error occurred!!", Toast.LENGTH_LONG).show();
+
+                            }
+                        });
+                mRequestQueue.add(jsonObjectRequest);
+
             }
 
             @Override
