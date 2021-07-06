@@ -18,5 +18,6 @@ public class FirebaseNotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_firebase_notification);
 
 
+
     }
 }

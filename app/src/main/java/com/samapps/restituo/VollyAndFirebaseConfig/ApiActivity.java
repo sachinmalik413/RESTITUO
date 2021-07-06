@@ -31,6 +31,7 @@ public class ApiActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView3);
         mRequestQueue = Volley.newRequestQueue(this);
 
+
         // for json data
 
         String url = "https://protochordate-falls.000webhostapp.com/restituo/register.php?phone=9869745614&invitedBy=8652807821";
@@ -62,6 +63,7 @@ public class ApiActivity extends AppCompatActivity {
                     }
                 });
         mRequestQueue.add(jsonObjectRequest);
+
 
 
     }
