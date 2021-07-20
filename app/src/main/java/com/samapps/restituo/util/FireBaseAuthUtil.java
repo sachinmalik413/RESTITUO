@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.samapps.restituo.R;
+import com.samapps.restituo.ui.view.DashboardActivity;
 import com.samapps.restituo.ui.view.VerifyPhoneActivity;
 
 import java.util.concurrent.TimeUnit;
@@ -31,10 +32,12 @@ public class FireBaseAuthUtil {
     private String mVerificationId;
     private FirebaseAuth mAuth;
     private Context context;
+    private CallBack callBack;
 
     public FireBaseAuthUtil(Context context) {
         mAuth = FirebaseAuth.getInstance();
         this.context=context;
+        this.callBack = (VerifyPhoneActivity)context;
     }
 
     public void sendVerificationCode(String mobile) {
@@ -44,6 +47,10 @@ public class FireBaseAuthUtil {
                 TimeUnit.SECONDS,
                 TaskExecutors.MAIN_THREAD,
                 mCallbacks);
+    }
+
+    public interface CallBack {
+        public void codeRecieved(String code);
     }
 
 
@@ -62,6 +69,7 @@ public class FireBaseAuthUtil {
                 //editTextCode.setText(code);
                 //verifying the code
                 verifyVerificationCode(code);
+                callBack.codeRecieved(code);
             }
         }
 
@@ -96,6 +104,8 @@ public class FireBaseAuthUtil {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(context, "verification complete", Toast.LENGTH_LONG).show();
+                            context.startActivity(new Intent(context, DashboardActivity.class));
+                            ((VerifyPhoneActivity) context).finish();
                             //verification successful we will start the profile activity
                             /*Intent intent = new Intent(context, ProfileActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
