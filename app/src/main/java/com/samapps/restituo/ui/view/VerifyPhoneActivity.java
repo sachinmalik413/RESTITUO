@@ -1,7 +1,5 @@
 package com.samapps.restituo.ui.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -28,7 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.samapps.restituo.R;
-import com.samapps.restituo.VollyAndFirebaseConfig.ApiActivity;
+import com.samapps.restituo.util.FireBaseAuthUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -85,67 +83,62 @@ public class VerifyPhoneActivity extends AppCompatActivity implements FireBaseAu
 
         // initializing on click listener
         // for verify otp button
-        verifyOTPBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String code = ((EditText)findViewById(R.id.editTextNumber)).getText().toString().trim();
-                if(FirebaseAuth.getInstance().getCurrentUser() == null) {
-                    fireBaseAuthUtil.verifyVerificationCode(code);
-                }
 
-            public void onClick(View v) {
-                // validating if the OTP text field is empty or not.
-                if (TextUtils.isEmpty(edtOTP.getText().toString())) {
-                    // if the OTP text field is empty display
-                    // a message to user to enter OTP
-                    Toast.makeText(VerifyPhoneActivity.this, "Please enter OTP", Toast.LENGTH_SHORT).show();
-                } else {
-                    // if OTP field is not empty calling
-                    // method to verify the OTP.
-                    verifyCode(edtOTP.getText().toString());
+        verifyOTPBtn.setOnClickListener(view -> {
+            String code = ((EditText) findViewById(R.id.editTextNumber)).getText().toString().trim();
+            if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+                fireBaseAuthUtil.verifyVerificationCode(code);
+            }
+            // validating if the OTP text field is empty or not.
+            if (TextUtils.isEmpty(edtOTP.getText().toString())) {
+                // if the OTP text field is empty display
+                // a message to user to enter OTP
+                Toast.makeText(VerifyPhoneActivity.this, "Please enter OTP", Toast.LENGTH_SHORT).show();
+            } else {
+                // if OTP field is not empty calling
+                // method to verify the OTP.
+                verifyCode(edtOTP.getText().toString());
 
-                    // for volly json object request
+                // for volly json object request
 
-                    String url = "https://protochordate-falls.000webhostapp.com/restituo/register.php?phone="+mobile+"&invitedBy="+invitedPhone;
-                    JsonObjectRequest
-                            jsonObjectRequest
-                            = new JsonObjectRequest(
-                            Request.Method.GET,
-                            url,
-                            null,
-                            new Response.Listener<JSONObject>() {
+                String url = "https://protochordate-falls.000webhostapp.com/restituo/register.php?phone=" + mobile + "&invitedBy=" + invitedPhone;
+                JsonObjectRequest
+                        jsonObjectRequest
+                        = new JsonObjectRequest(
+                        Request.Method.GET,
+                        url,
+                        null,
+                        new Response.Listener<JSONObject>() {
 
 
-                                @Override
-                                public void onResponse(JSONObject response)
-                                {
-                                    // textView.setText(response.getString("message"));
-                                    try {
-                                        Toast.makeText(VerifyPhoneActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                // textView.setText(response.getString("message"));
+                                try {
+                                    Toast.makeText(VerifyPhoneActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                            },
-                            new Response.ErrorListener() {
-                                @Override
-                                public void onErrorResponse(VolleyError error)
-                                {
-                                    Toast.makeText(VerifyPhoneActivity.this, "Some error occurred!!", Toast.LENGTH_LONG).show();
 
-                                }
-                            });
-                    mRequestQueue.add(jsonObjectRequest);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(VerifyPhoneActivity.this, "Some error occurred!!", Toast.LENGTH_LONG).show();
 
-                    // end volly json object request
+                            }
+                        });
+                mRequestQueue.add(jsonObjectRequest);
 
-                    Toast.makeText(VerifyPhoneActivity.this,"Login Successful",Toast.LENGTH_LONG).show();
-                    Intent intent1=new Intent(VerifyPhoneActivity.this,PrivacyPolicyActivity.class);
-                    startActivity(intent1);
-                }
+                // end volly json object request
+
+                Toast.makeText(VerifyPhoneActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
+                Intent intent1 = new Intent(VerifyPhoneActivity.this, PrivacyPolicyActivity.class);
+                startActivity(intent1);
             }
         });
+
     }
 
     private void signInWithCredential(PhoneAuthCredential credential) {
