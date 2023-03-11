@@ -26,7 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.samapps.restituo.R;
-import com.samapps.restituo.VollyAndFirebaseConfig.ApiActivity;
+import com.samapps.restituo.util.FireBaseAuthUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,18 +54,6 @@ public class VerifyPhoneActivity extends AppCompatActivity implements FireBaseAu
     private String verificationId;
     FireBaseAuthUtil fireBaseAuthUtil;
     EditText editTextNumber;
-    // variable for FirebaseAuth class
-    private FirebaseAuth mAuth;
-
-    // for volly api
-    private RequestQueue mRequestQueue;
-    // variable for our text input
-    // field for phone and OTP.
-    EditText edtOTP,edtPh;
-    Button verifyOTPBtn;
-
-    // string for storing our verification ID
-    private String verificationId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +113,7 @@ public class VerifyPhoneActivity extends AppCompatActivity implements FireBaseAu
                 } else {
                     // if OTP field is not empty calling
                     // method to verify the OTP.
-                    verifyCode(edtOTP.getText().toString());
+                    //verifyCode(edtOTP.getText().toString());
 
                     // for volly json object request
 
@@ -205,8 +193,14 @@ public class VerifyPhoneActivity extends AppCompatActivity implements FireBaseAu
         );
     }
 
+    @Override
+    public void codeRecieved(String code) {
+
+    }
+
+
     // callback method is called on Phone auth provider.
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
+ /*   private PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
             // initializing our callbacks for on
             // verification callback method.
@@ -315,31 +309,7 @@ public class VerifyPhoneActivity extends AppCompatActivity implements FireBaseAu
 
     }
 
-    private void signInWithCredential(PhoneAuthCredential credential) {
-        // inside this method we are checking if
-        // the code entered is correct or not.
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
 
-                        } else {
-                            // if the code is not correct then we are
-                            // displaying an error message to the user.
-                            Toast.makeText(VerifyPhoneActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                }
-
-        // this method is called when firebase doesn't
-        // sends our OTP code due to any error or issue.
-        @Override
-        public void onVerificationFailed(FirebaseException e) {
-            // displaying error message with firebase exception.
-            //Toast.makeText(VerifyPhoneActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    };
 
     // below method is use to verify code from Firebase.
     private void verifyCode(String code) {
@@ -368,8 +338,8 @@ public class VerifyPhoneActivity extends AppCompatActivity implements FireBaseAu
                 // auto verification of user.
         );
     }
+*/
 
-    // callback method is called on Phone auth provider.
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
             // initializing our callbacks for on
@@ -402,8 +372,8 @@ public class VerifyPhoneActivity extends AppCompatActivity implements FireBaseAu
                 // if the code is not null then
                 // we are setting that code to
                 // our OTP edittext field.
-
                 edtOTP.setText(code);
+
                 // after setting this code
                 // to OTP edittext field we
                 // are calling our verifycode method.
@@ -416,24 +386,18 @@ public class VerifyPhoneActivity extends AppCompatActivity implements FireBaseAu
         @Override
         public void onVerificationFailed(FirebaseException e) {
             // displaying error message with firebase exception.
-            //Toast.makeText(VerifyPhoneActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(VerifyPhoneActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     };
 
     // below method is use to verify code from Firebase.
     private void verifyCode(String code) {
-        // below line is used for getting getting
+        // below line is used for getting
         // credentials from our verification id and code.
-        edtOTP.setText(code);
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
 
         // after getting credential we are
         // calling sign in method.
         signInWithCredential(credential);
-    }
-
-    @Override
-    public void codeRecieved(String code) {
-        editTextNumber.setText(code);
     }
 }
